@@ -1,1 +1,454 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+  <meta content='width=device-width, initial-scale=1.0' name='viewport'/>
+  <title>Cine Box Fan - Auto Link Shortener</title>
+  
+  <link href='https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;display=swap' rel='stylesheet'/>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'/>
 
+  <b:skin><![CDATA[
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 20%, #151928, #0a0c13 80%);
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 25px 15px;
+    }
+
+    .main-wrapper {
+      width: 100%;
+      max-width: 580px;
+    }
+
+    .card {
+      background: rgba(22, 27, 46, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 32px 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(99, 102, 241, 0.1);
+      position: relative;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #6366f1, #3b82f6);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .header p {
+      font-size: 13.5px;
+      color: #94a3b8;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #a5b4fc;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+
+    .input-wrapper {
+      display: flex;
+      align-items: center;
+      background: rgba(13, 17, 28, 0.85);
+      border: 1.5px solid rgba(99, 102, 241, 0.25);
+      border-radius: 14px;
+      padding: 4px 14px;
+      transition: all 0.3s ease;
+    }
+
+    .input-wrapper:focus-within {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+    }
+
+    .input-wrapper i {
+      color: #64748b;
+      margin-right: 12px;
+      font-size: 15px;
+    }
+
+    .input-wrapper input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #f8fafc;
+      font-size: 14px;
+      padding: 12px 0;
+    }
+
+    .input-wrapper input::placeholder {
+      color: #64748b;
+      font-size: 13.5px;
+    }
+
+    .action-btn-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-size: 14.5px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: #ffffff;
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(79, 70, 229, 0.5);
+    }
+
+    .btn-add {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      color: #cbd5e1;
+      padding: 10px;
+      font-size: 13px;
+      margin-top: 8px;
+      border-radius: 12px;
+    }
+
+    .btn-add:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: #6366f1;
+      color: #fff;
+    }
+
+    .result-box {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.12);
+      display: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #10b981;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .final-link-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(13, 17, 28, 0.95);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      border-radius: 14px;
+      padding: 8px 12px;
+    }
+
+    .final-link-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #f1f5f9;
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .copy-btn {
+      background: #10b981;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .copy-btn:hover {
+      background: #059669;
+    }
+
+    .test-link-btn {
+      display: block;
+      text-align: center;
+      margin-top: 12px;
+      color: #818cf8;
+      font-size: 12.5px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .test-link-btn:hover {
+      text-decoration: underline;
+    }
+
+    details.steps-info {
+      margin-top: 16px;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 10px 14px;
+    }
+
+    details.steps-info summary {
+      cursor: pointer;
+      font-size: 12px;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .step-item {
+      font-size: 11.5px;
+      margin-top: 8px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.3);
+      color: #cbd5e1;
+      word-break: break-all;
+    }
+
+    .step-item strong {
+      color: #818cf8;
+    }
+
+    .footer-text {
+      text-align: center;
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 24px;
+    }
+  ]]></b:skin>
+</head>
+
+<body>
+  <div class='main-wrapper'>
+    <div class='card'>
+      <div class='header'>
+        <div class='logo-badge'>
+          <i class='fa-solid fa-bolt'/> 3-Stage Auto Shortener
+        </div>
+        <h1>Cine Box Fan Shortener</h1>
+        <p>ভিডিও লিংক দিন ➔ ২য় সাইট (AutoRedrik) ➔ ৩য় সাইট (Movie63456) ➔ ভিডিও প্লেয়ার</p>
+      </div>
+
+      <div id='video-inputs-container'>
+        <div class='input-group'>
+          <label class='input-label'>VIDEO PART 1:</label>
+          <div class='input-wrapper'>
+            <i class='fa-solid fa-link'/>
+            <input class='video-url-input' placeholder='https://example.com/video.mp4' type='url'/>
+          </div>
+        </div>
+      </div>
+
+      <button class='btn btn-add' id='add-part-btn' type='button'>
+        <i class='fa-solid fa-plus'/> + Add Video Part
+      </button>
+
+      <div class='action-btn-row'>
+        <button class='btn btn-primary' id='generate-btn' type='button'>
+          <i class='fa-solid fa-share-nodes'/> Generate Short Link
+        </button>
+      </div>
+
+      <div class='result-box' id='result-box'>
+        <div class='badge-status'>
+          <i class='fa-solid fa-circle-check'/> Short Link Ready!
+        </div>
+
+        <div class='final-link-box'>
+          <input class='final-link-input' id='final-link-text' readonly='readonly' type='text'/>
+          <button class='copy-btn' id='copy-btn' type='button'>
+            <i class='fa-solid fa-copy'/> Copy
+          </button>
+        </div>
+
+        <a class='test-link-btn' href='#' id='test-link' target='_blank'>
+          <i class='fa-solid fa-up-right-from-square'/> লিংকটি টেস্ট করে দেখতে এখানে ক্লিক করুন
+        </a>
+
+        <details class='steps-info'>
+          <summary><i class='fa-solid fa-diagram-project'/> ৩টি স্টেপের বিস্তারিত লিংক দেখুন</summary>
+          <div class='step-item'>
+            <strong>Step 1 (PrimePlyer):</strong>
+            <div id='step1-display'/>
+          </div>
+          <div class='step-item'>
+            <strong>Step 2 (Movie63456):</strong>
+            <div id='step2-display'/>
+          </div>
+          <div class='step-item'>
+            <strong>Step 3 (AutoRedrik - Final):</strong>
+            <div id='step3-display'/>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class='footer-text'>
+      &#169; 2026 Cine Box Fan &#8226; All-in-One Automated Link Mechanism
+    </div>
+  </div>
+
+  <b:section id='main' showaddelement='false'>
+    <b:widget id='Blog1' locked='true' title='Blog' type='Blog' visible='false'>
+      <b:includable id='main'/>
+    </b:widget>
+  </b:section>
+
+  <script type='text/javascript'>
+  //<![CDATA[
+    let partCount = 1;
+
+    document.getElementById('add-part-btn').addEventListener('click', function() {
+      partCount++;
+      const container = document.getElementById('video-inputs-container');
+      const div = document.createElement('div');
+      div.className = 'input-group';
+      div.innerHTML = `
+        <label class="input-label">VIDEO PART ${partCount}:</label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-link"></i>
+          <input type="url" class="video-url-input" placeholder="https://example.com/part${partCount}.mp4">
+        </div>
+      `;
+      container.appendChild(div);
+    });
+
+    // সম্পূর্ণ বিশুদ্ধ Base64 কনভার্টার
+    function cleanBase64(str) {
+      return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+        return String.fromCharCode('0x' + p1);
+      }));
+    }
+
+    document.getElementById('generate-btn').addEventListener('click', function() {
+      const inputs = document.querySelectorAll('.video-url-input');
+      const urls = [];
+      inputs.forEach(input => {
+        const val = input.value.trim();
+        if (val) urls.push(val);
+      });
+
+      if (urls.length === 0) {
+        alert('অনুগ্রহ করে অন্তত ১টি ভিডিও লিংক দিন!');
+        return;
+      }
+
+      // ১. ভিডিও লিংক দিয়ে ১ম সাইট (Primeplyer) তৈরি
+      let site1Payload;
+      if (urls.length === 1) {
+        site1Payload = JSON.stringify({ url: urls[0] });
+      } else {
+        site1Payload = JSON.stringify({ multi_part: urls });
+      }
+      const primeplyerLink = "https://primeplyer.blogspot.com/?stream=" + cleanBase64(site1Payload);
+
+      // ২. ১ম সাইটের লিংক দিয়ে ৩য় সাইট (Movie63456) তৈরি
+      const movieLink = "https://movie63456.blogspot.com/?go=" + cleanBase64(primeplyerLink);
+
+      // ৩. পুরো ৩য় সাইটের লিংকটিকে একক স্ট্রিং হিসেবে Base64 করে ২য় সাইটের (AutoRedrik) পেছনে বসানো
+      // কোনো স্পেশাল ক্যারেক্টার বা দুটি '?' থাকবে না
+      const finalAutoRedrikLink = "https://autoredrik.blogspot.com/?" + cleanBase64(movieLink);
+
+      // আউটপুট দেখানো
+      document.getElementById('final-link-text').value = finalAutoRedrikLink;
+      document.getElementById('test-link').href = finalAutoRedrikLink;
+
+      document.getElementById('step1-display').innerText = primeplyerLink;
+      document.getElementById('step2-display').innerText = movieLink;
+      document.getElementById('step3-display').innerText = finalAutoRedrikLink;
+
+      document.getElementById('result-box').style.display = 'block';
+    });
+
+    document.getElementById('copy-btn').addEventListener('click', function() {
+      const linkInput = document.getElementById('final-link-text');
+      linkInput.select();
+      linkInput.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(linkInput.value).then(() => {
+        const originalText = this.innerHTML;
+        this.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+        this.style.background = '#059669';
+        setTimeout(() => {
+          this.innerHTML = originalText;
+          this.style.background = '#10b981';
+        }, 2000);
+      });
+    });
+  //]]>
+  </script>
+</body>
+</html>
